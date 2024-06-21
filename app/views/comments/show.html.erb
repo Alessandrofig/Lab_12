@@ -1,0 +1,19 @@
+
+<h1>Showing comment</h1>
+
+<p><strong>Body:</strong></p>
+<p><%= @comment.body %></p>
+
+<p><strong>User:</strong></p>
+<p><a href="/users/<%= @comment.user_id %>"><%= @comment.user_id %></a></p>
+
+<p><strong>Post:</strong></p>
+<p><a href="/posts/<%= @comment.post_id %>"><%= @comment.post_id %></a></p>
+
+<div>
+
+  <%= link_to "Edit this comment", edit_comment_path(@comment), class: "btn btn-warning" %>
+  <%= link_to "Back to comments", comments_path, class: "btn btn-primary" %>
+  <%= button_to "Destroy this comment", @comment, data: { turbo_confirm: 'Are you sure?', turbo_method: "delete" }, class: "btn btn-danger", method: :delete %>
+  
+</div>

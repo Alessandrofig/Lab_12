@@ -1,0 +1,12 @@
+<div class="col-3">  
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= post.user.name %></h6>
+      <p class="card-text"><%= post.content.truncate 50 %></p>
+      <p class="card-text">Comments: <%= post.comments.count %></p>
+      <%= link_to 'View', post, class: 'card-link btn btn-primary' %>
+      <%= link_to 'Edit', edit_post_path(post), class: 'card-link btn btn-warning' %>
+    </div>
+  </div>
+</div>

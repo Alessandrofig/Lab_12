@@ -1,0 +1,25 @@
+<%= form_with(model: comment) do |form| %>
+  <div class="form-group mb-3">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: "form-control", required: true %>
+  </div>
+
+  <% if comment.new_record? %>
+    <% if params[:post_id] %>
+      <%= form.hidden_field :post_id, value: params[:post_id] %>
+    <% else %>
+      <div class="form-group mb-3">
+        <%= form.label :post_id %>
+        <%= form.collection_select :post_id, Post.all, :id, :title, {prompt: "Select a post"}, {class: "form-control"} %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="form-group mb-3">
+      <%= form.label :post_id %>
+      <%= form.collection_select :post_id, Post.all, :id, :title, {prompt: "Select a post"}, {class: "form-control", disabled: true} %>
+
+    </div>
+  <% end %>
+
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+<% end %>

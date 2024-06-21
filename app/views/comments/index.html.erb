@@ -1,0 +1,35 @@
+
+<h1>Comments</h1>
+
+<%= link_to 'New Comment', new_comment_path, class: 'btn btn-primary' %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th>User</th>
+      <th>Post</th>
+      <th> Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.body %></td>
+        <td><a href="/users/<%= comment.user_id %>"><%= comment.user_id %></a></td>
+        <td><a href="/posts/<%= comment.post_id %>"><%= comment.post_id %></a></td>
+        <td>
+          <%= link_to 'Show', comment, class: 'btn btn-info' %>
+          <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-warning' %>
+          <%= button_to 'Destroy', comment, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' %>
+            
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

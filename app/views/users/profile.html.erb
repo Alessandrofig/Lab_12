@@ -1,0 +1,42 @@
+<h1>Profile</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<h2>Posts</h2>
+<% if @posts.any? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <strong><%= link_to post.title, post_path(post) %></strong><br>
+        <%= truncate(post.content, length: 100) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No posts found.</p>
+<% end %>
+
+<h2>Comments</h2>
+<% if @comments.any? %>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <strong>On Post:</strong> <%= link_to comment.post.title, post_path(comment.post) %><br>
+        <%= comment.body %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No comments found.</p>
+<% end %>
+
+<%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-warning' %>
+<%= link_to 'Back to Home', root_path, class: 'btn btn-primary' %>
